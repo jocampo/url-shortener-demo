@@ -1,6 +1,4 @@
-from flask import Flask
-
-from app.create_app import create_app
+from flask_app.create_app import create_app
 
 app = create_app()
 

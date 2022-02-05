@@ -1,6 +1,7 @@
 import os
 
 from flask import render_template, Flask
+from flask_alembic import Alembic
 from flask_cors import CORS
 from flask_restful import Api
 
@@ -19,6 +20,9 @@ def create_app(is_testing_context: bool = False):
 
     if is_testing_context:
         app.config["TESTING"] = True
+
+    alembic = Alembic()
+    alembic.init_app(app)
 
     api = Api(app)
     CORS(app, support_credentials=True)
