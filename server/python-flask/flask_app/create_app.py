@@ -22,7 +22,8 @@ def create_app(is_testing_context: bool = False):
     if is_testing_context:
         app.config["TESTING"] = True
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db = SQLAlchemy(app)
     migrate = Migrate(app, db)
 
