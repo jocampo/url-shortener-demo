@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -8,9 +8,9 @@ from app.create_app import db
 
 @dataclass
 class BaseModel(db.Model):
-    id: int
-    created_at: datetime
-    updated_at: datetime
+    id: int = field(init=False)
+    created_at: datetime = field(init=False)
+    updated_at: datetime = field(init=False)
 
     @hybrid_property
     def id(self) -> int:
