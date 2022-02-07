@@ -8,6 +8,9 @@ from flask_restful import Api
 
 from config import DATABASE_URL
 
+db = SQLAlchemy()
+migrate = Migrate()
+
 
 def create_app(is_testing_context: bool = False):
     if "DATABASE_URL" in os.environ:
@@ -25,8 +28,8 @@ def create_app(is_testing_context: bool = False):
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    db = SQLAlchemy(app)
-    migrate = Migrate(app, db)
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     api = Api(app)
     CORS(app, support_credentials=True)
