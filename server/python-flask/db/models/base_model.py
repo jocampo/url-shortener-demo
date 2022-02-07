@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import declared_attr
 
 from app.create_app import db
 
@@ -12,14 +11,6 @@ class BaseModel(db.Model):
     id: int
     created_at: datetime
     updated_at: datetime
-
-    @declared_attr
-    def __tablename__(cls) -> str:
-        """
-        Prevents us from having to set this on every SQLAlchemy entity
-        :return: tablename taken from the class name
-        """
-        return cls.__name__.lower()
 
     @hybrid_property
     def id(self) -> int:
