@@ -17,7 +17,7 @@ def load_database_config():
     """
     env = os.environ["ENV"]
     if env == Environment.LOCAL:
-        return "sqlite:///url_shortener.db"
+        return "sqlite:////url_shortener.db"
 
     db_user = os.environ["DB_USER"]
     db_pass = os.environ["DB_PASSWORD"]
