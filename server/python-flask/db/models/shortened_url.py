@@ -7,7 +7,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 
 @dataclass
-class Url(BaseModel):
+class ShortenedUrl(BaseModel):
     short_url: str
     long_url: str
     hits: int
