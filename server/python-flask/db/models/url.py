@@ -74,4 +74,4 @@ class Url(BaseModel):
     __hits = db.Column("hits", db.BigInteger, nullable=False, default=0)
 
     def __repr__(self):
-        return f"<URL Model: {self.__short_url} <-> {self.__long_url}>"
+        return f"<URL Model@{self.__id}: {self.__short_url} <-> {self.__long_url}>"
