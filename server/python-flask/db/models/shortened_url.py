@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 
-from db.models.base_model import BaseModel
-from app.create_app import db
+from sqlalchemy import Column, String, BigInteger
 
 from sqlalchemy.ext.hybrid import hybrid_property
+
+from db.models.base_model import BaseModel
 
 
 @dataclass
@@ -69,9 +70,9 @@ class ShortenedUrl(BaseModel):
 
         self.__hits = hits
 
-    __short_url = db.Column("short_url", db.String, nullable=False)
-    __long_url = db.Column("long_url", db.String, nullable=False)
-    __hits = db.Column("hits", db.BigInteger, nullable=False, default=0)
+    __short_url = Column("short_url", String, nullable=False)
+    __long_url = Column("long_url", String, nullable=False)
+    __hits = Column("hits", BigInteger, nullable=False, default=0)
 
     def __repr__(self):
         return f"<URL Model@{self.__id}: {self.__short_url} <-> {self.__long_url}>"
