@@ -73,6 +73,7 @@ class ShortenedUrl(BaseModel):
     __short_url = Column("short_url", String, nullable=False)
     __long_url = Column("long_url", String, nullable=False)
     __hits = Column("hits", BigInteger, nullable=False, default=0)
+    __tablename__ = 'url'
 
     def __repr__(self):
         return f"<URL Model@{self.__id}: {self.__short_url} <-> {self.__long_url}>"
