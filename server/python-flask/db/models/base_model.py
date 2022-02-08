@@ -1,16 +1,25 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 
+from flask_sqlalchemy import Model
+from sqlalchemy import Column, BigInteger, DateTime, func
 from sqlalchemy.ext.hybrid import hybrid_property
-
-from app.create_app import db
+from sqlalchemy.orm import declared_attr
 
 
 @dataclass
-class BaseModel(db.Model):
+class BaseModel(Model):
     id: int = field(init=False)
     created_at: datetime = field(init=False)
     updated_at: datetime = field(init=False)
+
+    @declared_attr
+    def __tablename__(cls) -> str:
+        """
+        Prevents us from having to set this on every SQLAlchemy entity
+        :return: tablename taken from the class name
+        """
+        return cls.__name__.lower()
 
     @hybrid_property
     def id(self) -> int:
@@ -65,6 +74,6 @@ class BaseModel(db.Model):
         assert isinstance(updated_at, datetime), type(updated_at)
         self.__updated_at = updated_at
 
-    __id = db.Column(db.BigInteger, primary_key=True)
-    __created_at = db.Column("created_at", db.DateTime(timezone=True), server_default=db.func.now())
-    __updated_at = db.Column("updated_at", db.DateTime(timezone=True), onupdate=db.func.now())
+    __id = Column(BigInteger, primary_key=True)
+    __created_at = Column("created_at", DateTime(timezone=True), server_default=func.now())
+    __updated_at = Column("updated_at", DateTime(timezone=True), onupdate=func.now())
