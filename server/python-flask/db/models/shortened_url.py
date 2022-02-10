@@ -73,6 +73,8 @@ class ShortenedUrl(Base):
     __short_url = Column("short_url", String, nullable=False)
     __long_url = Column("long_url", String, nullable=False)
     __hits = Column("hits", BigInteger, nullable=False, default=0)
+
+    """ Tablename needs to be explicitly set because there's no way Shortened Url gets converted to url in the db """
     __tablename__ = 'url'
 
     def __repr__(self):
