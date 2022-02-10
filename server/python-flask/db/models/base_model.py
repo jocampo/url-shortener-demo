@@ -13,14 +13,6 @@ class BaseModel(Model):
     created_at: datetime = field(init=False)
     updated_at: datetime = field(init=False)
 
-    @declared_attr
-    def __tablename__(cls) -> str:
-        """
-        Prevents us from having to set this on every SQLAlchemy entity
-        :return: tablename taken from the class name
-        """
-        return cls.__name__.lower()
-
     @hybrid_property
     def id(self) -> int:
         """
@@ -74,6 +66,6 @@ class BaseModel(Model):
         assert isinstance(updated_at, datetime), type(updated_at)
         self.__updated_at = updated_at
 
-    __id = Column(BigInteger, primary_key=True)
+    __id = Column("id", BigInteger, primary_key=True)
     __created_at = Column("created_at", DateTime(timezone=True), server_default=func.now())
     __updated_at = Column("updated_at", DateTime(timezone=True), onupdate=func.now())
