@@ -23,6 +23,19 @@ class HttpStatuses(Enum):
     """
     NO_CONTENT = 204
 
+    # 3XX Http Statuses
+    """
+        Used for redirecting. Links or records returning this response should be updated.
+        The new URL should be provided in the Location field, included with the response.
+    """
+    MOVED_PERMANENTLY = 301
+
+    """
+        Used for redirecting.
+        The new URL should be provided in the Location field, included with the response.
+    """
+    MOVED_TEMPORARILY = 302
+
     # 4XX Http Statuses
     """
         Request could not be understood by the server due to malformed syntax. The request should
