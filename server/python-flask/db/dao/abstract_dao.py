@@ -46,16 +46,28 @@ class AbstractDAO(ABC):
 
     @staticmethod
     def begin():
+        """
+        Manually begin a db transaction
+        """
         db.session.begin()
 
     @staticmethod
     def rollback():
+        """
+        Manually rolls back a db transaction
+        """
         db.session.rollback()
 
     @staticmethod
     def commit():
+        """
+        Manually commits a db transaction
+        """
         db.session.commit()
 
     @staticmethod
     def flush():
+        """
+        Manually flushes the pending db transactions
+        """
         db.session.flush()
