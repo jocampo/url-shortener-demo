@@ -4,7 +4,6 @@ from datetime import datetime
 from flask_sqlalchemy import Model
 from sqlalchemy import Column, BigInteger, DateTime, func
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import declared_attr
 
 
 @dataclass
