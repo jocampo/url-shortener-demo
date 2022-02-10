@@ -4,11 +4,11 @@ from sqlalchemy import Column, String, BigInteger
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from db.models.base_model import BaseModel
+from db.models import Base
 
 
 @dataclass
-class ShortenedUrl(BaseModel):
+class ShortenedUrl(Base):
     short_url: str
     long_url: str
     hits: int
